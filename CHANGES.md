@@ -3,6 +3,11 @@
 
 ## Unreleased
 
+- Added support for CrateDB's [FLOAT_VECTOR] data type. For SQLAlchemy
+  column definitions, you can use it like `FloatVector(dimensions=1024)`.
+
+[FLOAT_VECTOR]: https://crate.io/docs/crate/reference/en/master/general/ddl/data-types.html#float-vector
+
 
 ## 2023/09/29 0.34.0
 
