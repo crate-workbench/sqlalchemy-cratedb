@@ -54,15 +54,12 @@ jobs:
           cache-dependency-path:
             pyproject.toml
 
-      - name: Set up project
+      - name: Update setuptools
         run: |
 
           # `setuptools 0.64.0` adds support for editable install hooks (PEP 660).
           # https://github.com/pypa/setuptools/blob/main/CHANGES.rst#v6400
           pip install "setuptools>=64" --upgrade
-
-          # Install package in editable mode.
-          pip install --use-pep517 --prefer-binary --editable='.[develop,test]'
 
       - name: Invoke tests
         run: |
