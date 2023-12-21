@@ -91,6 +91,9 @@ dependencies = [
   "verlib2==0.2",
 ]
 [project.optional-dependencies]
+all = [
+  "sqlalchemy-cratedb[vector]",
+]
 develop = [
   "black<24",
   "mypy<1.8",
@@ -113,6 +116,9 @@ test = [
   "pytest<8",
   "pytest-cov<5",
   "pytest-mock<4",
+]
+vector = [
+  "numpy",
 ]
 [project.urls]
 changelog = "https://github.com/crate-workbench/sqlalchemy-cratedb/blob/main/CHANGES.md"

@@ -238,6 +238,12 @@ class CrateTypeCompiler(compiler.GenericTypeCompiler):
     def visit_OBJECT(self, type_, **kw):
         return "OBJECT"
 
+    def visit_FLOAT_VECTOR(self, type_, **kw):
+        dimensions = type_.dimensions
+        if dimensions is None:
+            raise ValueError("FloatVector must be initialized with dimension size")
+        return f"FLOAT_VECTOR({dimensions})"
+
 
 class CrateCompiler(compiler.SQLCompiler):
 
