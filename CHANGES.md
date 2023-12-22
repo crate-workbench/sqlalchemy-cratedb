@@ -6,6 +6,9 @@
 - Added support for CrateDB's [FLOAT_VECTOR] data type. For SQLAlchemy
   column definitions, you can use it like `FloatVector(dimensions=1024)`.
 
+- Fixed `get_table_names()` reflection method, it did not respect the
+  `schema` query argument in SQLAlchemy connection URLs.
+
 [FLOAT_VECTOR]: https://crate.io/docs/crate/reference/en/master/general/ddl/data-types.html#float-vector
 
 
