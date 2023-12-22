@@ -229,6 +229,15 @@ class CrateDialect(default.DefaultDialect):
     def _get_default_schema_name(self, connection):
         return 'doc'
 
+    def _get_effective_schema_name(self, connection):
+        schema_name_raw = connection.engine.url.query.get("schema")
+        schema_name = None
+        if isinstance(schema_name_raw, str):
+            schema_name = schema_name_raw
+        elif isinstance(schema_name_raw, tuple):
+            schema_name = schema_name_raw[0]
+        return schema_name
+
     def _get_server_version_info(self, connection):
         return tuple(connection.connection.lowest_server_version.version)
 
@@ -258,6 +267,8 @@ class CrateDialect(default.DefaultDialect):
 
     @reflection.cache
     def get_table_names(self, connection, schema=None, **kw):
+        if schema is None:
+            schema = self._get_effective_schema_name(connection)
         cursor = connection.exec_driver_sql(
             "SELECT table_name FROM information_schema.tables "
             "WHERE {0} = ? "
