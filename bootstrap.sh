@@ -68,7 +68,7 @@ function setup_package() {
     fi
 
     # Install package in editable mode.
-    pip install ${PIP_OPTIONS} --editable='.[develop,test]'
+    pip install ${PIP_OPTIONS} --use-pep517 --prefer-binary --editable='.[all,develop,test]'
 
     # Install designated SQLAlchemy version.
     if [ -n "${SQLALCHEMY_VERSION}" ]; then

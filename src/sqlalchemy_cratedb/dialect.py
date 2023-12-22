@@ -33,7 +33,7 @@ from .compiler import (
 )
 from crate.client.exceptions import TimezoneUnawareException
 from .sa_version import SA_VERSION, SA_1_4, SA_2_0
-from .type import ObjectArray, ObjectType
+from .type import FloatVector, ObjectArray, ObjectType
 
 TYPES_MAP = {
     "boolean": sqltypes.Boolean,
@@ -51,7 +51,8 @@ TYPES_MAP = {
     "float": sqltypes.Float,
     "real": sqltypes.Float,
     "string": sqltypes.String,
-    "text": sqltypes.String
+    "text": sqltypes.String,
+    "float_vector": FloatVector,
 }
 try:
     # SQLAlchemy >= 1.1
