@@ -197,6 +197,9 @@ class CrateDDLCompiler(compiler.DDLCompiler):
                       "they will be omitted when generating DDL statements.")
         return None
 
+    def visit_create_index(self, create, **kw):
+        return "SELECT 1;"
+
 
 class CrateTypeCompiler(compiler.GenericTypeCompiler):
 
@@ -254,6 +257,30 @@ class CrateTypeCompiler(compiler.GenericTypeCompiler):
         return "TIMESTAMP %s" % (
             (type_.timezone and "WITH" or "WITHOUT") + " TIME ZONE",
         )
+
+    def visit_BLOB(self, type_, **kw):
+        return "STRING"
+
+    def visit_FLOAT(self, type_, **kw):
+        """
+        From `sqlalchemy.sql.sqltypes.Float`.
+
+        When a :paramref:`.Float.precision` is not provided in a
+        :class:`_types.Float` type some backend may compile this type as
+        an 8 bytes / 64 bit float datatype. To use a 4 bytes / 32 bit float
+        datatype a precision <= 24 can usually be provided or the
+        :class:`_types.REAL` type can be used.
+        This is known to be the case in the PostgreSQL and MSSQL dialects
+        that render the type as ``FLOAT`` that's in both an alias of
+        ``DOUBLE PRECISION``. Other third party dialects may have similar
+        behavior.
+        """
+        if not type_.precision:
+            return "FLOAT"
+        elif type_.precision <= 24:
+            return "FLOAT"
+        else:
+            return "DOUBLE"
 
 
 class CrateCompiler(compiler.SQLCompiler):

@@ -34,6 +34,7 @@ from .compiler import (
 )
 from .sa_version import SA_VERSION, SA_1_4, SA_2_0
 from .type import FloatVector, ObjectArray, ObjectType
+from .type.binary import LargeBinary
 
 TYPES_MAP = {
     "boolean": sqltypes.Boolean,
@@ -149,6 +150,7 @@ colspecs = {
     sqltypes.Date: Date,
     sqltypes.DateTime: DateTime,
     sqltypes.TIMESTAMP: DateTime,
+    sqltypes.LargeBinary: LargeBinary,
 }
 
 
