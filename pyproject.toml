@@ -112,7 +112,7 @@ release = [
 ]
 test = [
   "dask",
-  "pandas",
+  "pandas<2.2",
   "pytest<8",
   "pytest-cov<5",
   "pytest-mock<4",
