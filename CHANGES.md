@@ -9,6 +9,10 @@
 - Fixed `get_table_names()` reflection method, it did not respect the
   `schema` query argument in SQLAlchemy connection URLs.
 
+- Added support for `psycopg` and `asyncpg` drivers, by introducing the
+  `crate+psycopg://`, `crate+asyncpg://`, and `crate+urllib3://` dialect
+  identifiers. The asynchronous variant of `psycopg` is also supported.
+
 [FLOAT_VECTOR]: https://crate.io/docs/crate/reference/en/master/general/ddl/data-types.html#float-vector
 
 
