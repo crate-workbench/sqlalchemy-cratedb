@@ -35,6 +35,7 @@ from .compiler import (
 from crate.client.exceptions import TimezoneUnawareException
 from .sa_version import SA_VERSION, SA_1_4, SA_2_0
 from .type import FloatVector, ObjectArray, ObjectType
+from .type.binary import LargeBinary
 
 TYPES_MAP = {
     "boolean": sqltypes.Boolean,
@@ -153,7 +154,8 @@ class DateTime(sqltypes.DateTime):
 
 colspecs = {
     sqltypes.DateTime: DateTime,
-    sqltypes.Date: Date
+    sqltypes.Date: Date,
+    sqltypes.LargeBinary: LargeBinary,
 }
 
 
