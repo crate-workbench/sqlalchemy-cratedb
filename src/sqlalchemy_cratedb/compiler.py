@@ -25,6 +25,7 @@ from collections import defaultdict
 
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql.base import PGCompiler
+from sqlalchemy.dialects.postgresql.base import RESERVED_WORDS as POSTGRESQL_RESERVED_WORDS
 from sqlalchemy.sql import compiler
 from sqlalchemy.types import String
 from .type.geo import Geopoint, Geoshape
@@ -317,3 +318,33 @@ class CrateCompiler(compiler.SQLCompiler):
         warnings.warn("CrateDB does not support the 'INSERT ... FOR UPDATE' clause, "
                       "it will be omitted when generating SQL statements.")
         return ''
+
+
+class CrateIdentifierPreparer(sa.sql.compiler.IdentifierPreparer):
+    """
+    Define CrateDB's reserved words to be quoted properly.
+    """
+    # TODO: There are certainly more to add here than just `object`?
+    reserved_words = set(list(POSTGRESQL_RESERVED_WORDS) + ["object"])
+
+    def _unquote_identifier(self, value):
+        if value[0] == self.initial_quote:
+            value = value[1:-1].replace(
+                self.escape_to_quote, self.escape_quote
+            )
+        return value
+
+    def format_type(self, type_, use_schema=True):
+        if not type_.name:
+            raise sa.exc.CompileError("PostgreSQL ENUM type requires a name.")
+
+        name = self.quote(type_.name)
+        effective_schema = self.schema_for_object(type_)
+
+        if (
+            not self.omit_schema
+            and use_schema
+            and effective_schema is not None
+        ):
+            name = self.quote_schema(effective_schema) + "." + name
+        return name
