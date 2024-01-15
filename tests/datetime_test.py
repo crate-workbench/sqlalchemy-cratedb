@@ -82,9 +82,8 @@ class SqlAlchemyDateAndDateTimeTest(TestCase):
         ]
         self.session.query(self.Character).first()
 
-    def test_date_cannot_handle_tz_aware_datetime(self):
+    def test_date_can_handle_tz_aware_datetime(self):
         character = self.Character()
         character.name = "Athur"
         character.timestamp = datetime(2009, 5, 13, 19, 19, 30, tzinfo=CST())
         self.session.add(character)
-        self.assertRaises(DBAPIError, self.session.commit)
