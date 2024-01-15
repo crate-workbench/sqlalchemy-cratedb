@@ -95,6 +95,8 @@ class Any(expression.ColumnElement):
         self.operator = operator
 
 
+# TODO: Should this be inherited from PostgreSQL's
+#       `ARRAY`, in order to improve type checking?
 class _ObjectArray(sqltypes.UserDefinedType):
     cache_ok = True
 
@@ -139,6 +141,9 @@ class _ObjectArray(sqltypes.UserDefinedType):
 
     def get_col_spec(self, **kws):
         return "ARRAY(OBJECT)"
+
+    def as_generic(self, **kwargs):
+        return sqltypes.ARRAY
 
 
 ObjectArray = MutableList.as_mutable(_ObjectArray)
