@@ -87,10 +87,10 @@ Create a SQLAlchemy table object:
 Reflect column data types from the table metadata:
 
     >>> table.columns.get('name')
-    Column('name', String(), table=<characters>)
+    Column('name', VARCHAR(), table=<characters>)
 
     >>> table.primary_key
-    PrimaryKeyConstraint(Column('id', String(), table=<characters>, primary_key=True...
+    PrimaryKeyConstraint(Column('id', VARCHAR(), table=<characters>, primary_key=True...
 
 
 CrateDialect
