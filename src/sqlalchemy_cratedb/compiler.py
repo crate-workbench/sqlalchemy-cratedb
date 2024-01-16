@@ -238,6 +238,12 @@ class CrateTypeCompiler(compiler.GenericTypeCompiler):
     def visit_OBJECT(self, type_, **kw):
         return "OBJECT"
 
+    def visit_JSON(self, type_, **kw):
+        return "OBJECT"
+
+    def visit_JSONB(self, type_, **kw):
+        return "OBJECT"
+
 
 class CrateCompiler(compiler.SQLCompiler):
 
