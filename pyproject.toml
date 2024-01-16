@@ -84,7 +84,7 @@ dynamic = [
 ]
 dependencies = [
   'backports.zoneinfo<1; python_version < "3.9"',
-  "crate",
+  "crate @ git+https://github.com/crate/crate-python.git@no-sqlalchemy",
   "geojson<4,>=2.5",
   'importlib-resources; python_version < "3.9"',
   "sqlalchemy<2.1,>=1",
@@ -120,7 +120,7 @@ documentation = "https://github.com/crate-workbench/sqlalchemy-cratedb"
 homepage = "https://github.com/crate-workbench/sqlalchemy-cratedb"
 repository = "https://github.com/crate-workbench/sqlalchemy-cratedb"
 [project.entry-points."sqlalchemy.dialects"]
-crate = "sqlalchemy_cratedb:CrateDialect"
+crate = "sqlalchemy_cratedb.dialect:dialect"
 
 [tool.black]
 line-length = 80

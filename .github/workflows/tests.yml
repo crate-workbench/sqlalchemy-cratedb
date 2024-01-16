@@ -26,7 +26,10 @@ jobs:
         pip-allow-prerelease: ['false']
 
         exclude:
-          # SQLAlchemy 1.3 is not supported on Python 3.12 and higher.
+          # SQLAlchemy 1.3 is not supported on Python 3.10, 3.12, and higher.
+          - os: 'ubuntu-latest'
+            python-version: '3.10'
+            sqla-version: '<1.4'
           - os: 'ubuntu-latest'
             python-version: '3.12'
             sqla-version: '<1.4'
