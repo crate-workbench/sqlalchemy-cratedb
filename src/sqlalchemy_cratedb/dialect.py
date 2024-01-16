@@ -367,3 +367,6 @@ class CrateDialect(default.DefaultDialect):
 class DateTrunc(functions.GenericFunction):
     name = "date_trunc"
     type = sqltypes.TIMESTAMP
+
+
+dialect = CrateDialect
