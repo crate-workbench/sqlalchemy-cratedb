@@ -326,7 +326,7 @@ class CrateDialect(default.DefaultDialect):
             (table_name, schema or self.default_schema_name)
         )
         pks = result_fun(pk_result)
-        return {'constrained_columns': pks,
+        return {'constrained_columns': list(sorted(pks)),
                 'name': 'PRIMARY KEY'}
 
     @reflection.cache
