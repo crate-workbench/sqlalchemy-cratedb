@@ -114,10 +114,10 @@ class DateTime(sqltypes.DateTime):
 
     def bind_processor(self, dialect):
         def process(value):
-            if value is not None:
-                assert isinstance(value, datetime)
+            if isinstance(value, (datetime, date)):
                 return value.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-            return value
+            else:
+                return value
         return process
 
     def result_processor(self, dialect, coltype):
