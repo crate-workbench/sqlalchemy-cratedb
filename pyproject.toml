@@ -111,6 +111,8 @@ release = [
   "twine<5",
 ]
 test = [
+  "testcontainers", # Temporarily until cratedb-toolkit[testing] fix is live.
+  "cratedb-toolkit[testing]",
   "dask",
   "pandas<2.2",
   "pytest<8",
