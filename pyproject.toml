@@ -112,7 +112,7 @@ test = [
   "pandas<2.3",
   "pueblo>=0.0.7",
   "pytest<9",
-  "pytest-cov<5",
+  "pytest-cov<6",
   "pytest-mock<4",
 ]
 [project.urls]
