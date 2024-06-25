@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+- Added support for `psycopg` and `asyncpg` drivers, by introducing the
+  `crate+psycopg://`, `crate+asyncpg://`, and `crate+urllib3://` dialect
+  identifiers. The asynchronous variant of `psycopg` is also supported.
 
 ## 2024/06/25 0.38.0
 - Added/reactivated documentation as `sqlalchemy-cratedb`
