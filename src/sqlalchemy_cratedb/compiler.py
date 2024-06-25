@@ -255,6 +255,12 @@ class CrateTypeCompiler(compiler.GenericTypeCompiler):
             (type_.timezone and "WITH" or "WITHOUT") + " TIME ZONE",
         )
 
+    def visit_JSON(self, type_, **kw):
+        return "OBJECT"
+
+    def visit_JSONB(self, type_, **kw):
+        return "OBJECT"
+
 
 class CrateCompiler(compiler.SQLCompiler):
 
