@@ -1,3 +1,4 @@
+from sqlalchemy_cratedb.support.model import TableOptions
 from sqlalchemy_cratedb.support.pandas import insert_bulk, table_kwargs
 from sqlalchemy_cratedb.support.polyfill import check_uniqueness_factory, refresh_after_dml, \
     patch_autoincrement_timestamp
@@ -11,4 +12,5 @@ __all__ = [
     refresh_dirty,
     refresh_table,
     table_kwargs,
+    TableOptions,
 ]

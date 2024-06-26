@@ -2,6 +2,7 @@
 
 
 ## Unreleased
+- Added utility support wrapping CrateDB's special table options
 
 ## 2024/06/25 0.38.0
 - Added/reactivated documentation as `sqlalchemy-cratedb`
